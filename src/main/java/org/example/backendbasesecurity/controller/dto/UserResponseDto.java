@@ -1,0 +1,29 @@
+package org.example.backendbasesecurity.controller.dto;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.example.backendbasesecurity.repository.entity.User;
+
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class UserResponseDto {
+
+    private Integer id;
+    private String username;
+    private String source;
+    private String name;
+    private String job;
+    private String specialty;
+
+    public static UserResponseDto from(User entity) {
+        return new UserResponseDto(
+            entity.getId(),
+            entity.getUsername(),
+            entity.getSource().name(),
+            entity.getName(),
+            entity.getJob(),
+            entity.getSpecialty()
+        );
+    }
+}
